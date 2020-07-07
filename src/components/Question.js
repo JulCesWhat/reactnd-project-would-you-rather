@@ -1,14 +1,17 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 class Question extends React.Component {
 
     render() {
-        const { question } = this.props;
+        const { question, id } = this.props;
         return (
-            <div>
-                <p>{question.author}</p>
-            </div>
+            <Link to={`/questions/${id}`}>
+                <div>
+                    <p>{question.author}</p>
+                </div>
+            </Link>
         )
     }
 }
@@ -16,7 +19,8 @@ class Question extends React.Component {
 function mapStateToProps({ questions }, { id }) {
     const question = questions[id];
     return {
-        question
+        question,
+        id
     };
 }
 

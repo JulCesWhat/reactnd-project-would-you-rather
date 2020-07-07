@@ -12,13 +12,13 @@ export function getInitialData() {
     ]).then(([users, questions]) => ({
         users,
         questions,
-    }))
+    }));
 }
 
-export function saveQuestion(info) {
-    return _saveQuestion(info)
+export function saveQuestion(question) {
+    return _saveQuestion(question);
 }
 
-export function saveQuestionAnswer() {
-    return _saveQuestionAnswer
+export function saveQuestionAnswer(questionAnswer) {
+    return _saveQuestionAnswer(questionAnswer);
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { setAuthedUser } from '../actions/authedUser';
+import { handleAddQuestion } from '../actions/questions';
 
 class NewQuestion extends React.Component {
 
@@ -9,25 +9,28 @@ class NewQuestion extends React.Component {
         q2: ''
     }
 
-    handleOnQ1Change(e) {
-        e.preventDefault();
+    handleOnQ1Change = (e) => {
         const text = e.target.value;
         this.setState(() => ({
             q1: text
         }));
     }
 
-    handleOnQ2Change(e) {
-        e.preventDefault();
+    handleOnQ2Change = (e) => {
         const text = e.target.value;
         this.setState(() => ({
             q2: text
         }));
     }
 
-    handleOnSubmit() {
-        // const { dispatch } = this.props;
-        // dispatch(setAuthedUser(id))
+    handleOnSubmit = (e) => {
+        e.preventDefault();
+        const { dispatch } = this.props;
+        dispatch(handleAddQuestion(this.state.q1, this.state.q2));
+        this.setState(() => ({
+            q1: '',
+            q2: ''
+        }));
     }
 
     render() {
