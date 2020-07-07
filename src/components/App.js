@@ -1,6 +1,11 @@
 import React from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { handleInitialData } from '../actions/shared';
+import Nav from './Nav';
+import UserList from './UserList';
+import Dashboard from './Dashboard';
+import NewQuestion from './NewQuestion';
 
 class App extends React.Component {
 
@@ -10,16 +15,28 @@ class App extends React.Component {
 
 	render() {
 		return (
-			<div className="App">
-			<h1>Starting Project</h1>
-		</div>
+			<Router>
+				<Nav />
+				{
+					this.props.authedUser ?
+						(
+							<>
+								<Route path="/" exact component={Dashboard} />
+								<Route path="/add" exact component={NewQuestion} />
+							</>
+						)
+						: (
+							<Route path="/" component={UserList} />
+						)
+				}
+			</Router>
 		);
 	}
 }
 
 function mapStateToProps({ authedUser }) {
 	return {
-		loading: authedUser === null
+		authedUser
 	};
 }
 
