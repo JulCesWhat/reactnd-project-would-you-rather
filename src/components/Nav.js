@@ -21,6 +21,9 @@ class Nav extends Component {
                     <li>
                         <NavLink to="/add" activeClassName="active">New Question</NavLink>
                     </li>
+                    <li>
+                        <NavLink to="/leaderboard" activeClassName="active">Leaderboard</NavLink>
+                    </li>
                     {
                         user && (
                             <>
