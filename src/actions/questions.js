@@ -1,4 +1,5 @@
 import { saveQuestion, saveQuestionAnswer } from '../utils/api';
+import { addUserQuestion, addUserQuestionAnswer } from './users';
 
 
 export const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS';
@@ -28,7 +29,8 @@ export function handleAddQuestion(optionOneText, optionTwoText) {
             optionTwoText,
             author: authedUser
         }).then((question) => {
-            return dispatch(addQuestion(question))
+            dispatch(addQuestion(question));
+            return dispatch(addUserQuestion(authedUser, question.id));
         });
 
     };
@@ -47,9 +49,11 @@ export function handleAddQuestionAnswer(qid, answer) {
     return (dispatch, getState) => {
         const { authedUser } = getState();
 
-        dispatch(addQuestionAnswer(qid, authedUser, answer))
         saveQuestionAnswer({ authedUser, qid, answer })
-            .catch(() => {
+            .then(() => {
+                dispatch(addQuestionAnswer(qid, authedUser, answer));
+                return dispatch(addUserQuestionAnswer(authedUser, qid, answer));
+            }).catch(() => {
                 // Should handle error but it is not a real API
             });
     };
