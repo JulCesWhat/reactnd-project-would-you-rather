@@ -8,6 +8,7 @@ import Dashboard from './Dashboard';
 import NewQuestion from './NewQuestion';
 import QuestionPage from './QuestionPage';
 import Leaderboard from './Leaderboard';
+import PageNotFound from './PageNotFound';
 import LoadingBar from 'react-redux-loading';
 
 class App extends React.Component {
@@ -31,6 +32,7 @@ class App extends React.Component {
 										<Route path="/add" exact component={NewQuestion} />
 										<Route path="/questions/:id" exact component={QuestionPage} />
 										<Route path="/leaderboard" exact component={Leaderboard} />
+										<Route path="/404" component={PageNotFound} />
 									</>
 								) : (
 									<Route path="/" component={UserList} />

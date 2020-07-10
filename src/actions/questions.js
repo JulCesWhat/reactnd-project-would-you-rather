@@ -1,5 +1,4 @@
 import { saveQuestion, saveQuestionAnswer } from '../utils/api';
-import { addUserQuestion, addUserQuestionAnswer } from './users';
 import { showLoading, hideLoading } from 'react-redux-loading';
 
 export const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS';
@@ -13,9 +12,10 @@ export function receiveQuestions(questions) {
     };
 }
 
-export function addQuestion(question) {
+export function addQuestion(userId, question) {
     return {
         type: ADD_QUESTION,
+        userId,
         question
     };
 }
@@ -30,20 +30,20 @@ export function handleAddQuestion(optionOneText, optionTwoText) {
             optionTwoText,
             author: authedUser
         }).then((question) => {
-            dispatch(addQuestion(question));
-            dispatch(addUserQuestion(authedUser, question.id));
+            dispatch(addQuestion(authedUser, question));
+            // dispatch(addUserQuestion(authedUser, question.id));
             return dispatch(hideLoading());
         });
 
     };
 }
 
-export function addQuestionAnswer(qid, authedUser, answer) {
+export function addQuestionAnswer(qid, userId, answerNum) {
     return {
         type: SAVE_QUESTION_ANSWER,
         qid,
-        authedUser,
-        answer
+        userId,
+        answerNum
     };
 }
 
@@ -55,7 +55,7 @@ export function handleAddQuestionAnswer(qid, answer) {
         saveQuestionAnswer({ authedUser, qid, answer })
             .then(() => {
                 dispatch(addQuestionAnswer(qid, authedUser, answer));
-                dispatch(addUserQuestionAnswer(authedUser, qid, answer));
+                // dispatch(addUserQuestionAnswer(authedUser, qid, answer));
                 return dispatch(hideLoading());
             }).catch(() => {
                 // Should handle error but it is not a real API

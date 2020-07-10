@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { handleAddQuestionAnswer } from '../actions/questions';
+import { Redirect } from 'react-router-dom';
 
 class QuestionPage extends React.Component {
 
@@ -38,7 +39,7 @@ class QuestionPage extends React.Component {
                                         <hr />
                                         <div className={userAnswerReponse === 'optionTwo' ? 'question-answer' : ''}>
                                             <p>{question.optionTwo.text}</p>
-                                            <p>{(question.optionOne.votes.length / totalVotes * 100).toFixed(2) + ' %'}</p>
+                                            <p>{(question.optionTwo.votes.length / totalVotes * 100).toFixed(2) + ' %'}</p>
                                             <p>{question.optionTwo.votes.length} out of {totalVotes}</p>
                                         </div>
                                     </div>
@@ -57,7 +58,7 @@ class QuestionPage extends React.Component {
                                     </div>
                                 )
                         ) : (
-                            <p>The question cannot be found</p>
+                            <p>Page cannot be found.</p>
                         )
                 }
             </div >
