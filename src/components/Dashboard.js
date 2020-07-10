@@ -56,7 +56,7 @@ function mapStateToProps({ questions, authedUser }) {
     let unAnsQuestionIds = [];
     let questionIds = Object.keys(questions)
         .sort((a, b) => (questions[b].timestamp - questions[a].timestamp))
-    questionIds.foreach((id) => {
+    questionIds.forEach((id) => {
         const option1 = questions[id].optionOne.votes.some((id) => (id === authedUser));
         const option2 = questions[id].optionTwo.votes.some((id) => (id === authedUser));
         if (option1 || option2) {
