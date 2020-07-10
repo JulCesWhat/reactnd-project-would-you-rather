@@ -13,7 +13,7 @@ class Nav extends Component {
     render() {
         const { user } = this.props;
         return (
-            <nav className="nav" >
+            <nav className="nav">
                 <ul>
                     <li>
                         <NavLink to="/" exact activeClassName="active">Home</NavLink>
@@ -22,13 +22,13 @@ class Nav extends Component {
                         <NavLink to="/add" activeClassName="active">New Question</NavLink>
                     </li>
                     <li>
-                        <NavLink to="/leaderboard" activeClassName="active">Leaderboard</NavLink>
+                        <NavLink to="/leaderboard" activeClassName="active">Leader Board</NavLink>
                     </li>
                     {
                         user && (
                             <>
-                                <li>Welcome {user.name}</li>
-                                <li onClick={this.handleOnClick}>Log out</li>
+                                <li className="spacer">Welcome {user.name}</li>
+                                <li className="log-out" onClick={this.handleOnClick}>Log out</li>
                             </>
                         )
                     }

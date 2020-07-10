@@ -13,8 +13,11 @@ class User extends React.Component {
         const { user } = this.props;
         return (
             <div>
+                <img src={user.avatarURL}
+                    alt={`Avatart of ${user.name}`}
+                    className="avatar" />
                 <p>{user.name}</p>
-                <p onClick={() => (this.handleOnClick(user.id))}>SIGN IN</p>
+                <button className="btn" onClick={() => (this.handleOnClick(user.id))}>Log in</button>
             </div>
         )
     }

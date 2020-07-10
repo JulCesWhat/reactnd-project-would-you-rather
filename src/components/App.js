@@ -18,20 +18,22 @@ class App extends React.Component {
 	render() {
 		return (
 			<Router>
-				<Nav />
-				{
-					this.props.authedUser ?
-						(
-							<>
-								<Route path="/" exact component={Dashboard} />
-								<Route path="/add" exact component={NewQuestion} />
-								<Route path="/questions/:id" exact component={QuestionPage} />
-								<Route path="/leaderboard" exact component={Leaderboard} />
-							</>
-						) : (
-							<Route path="/" component={UserList} />
-						)
-				}
+				<div className="container">
+					<Nav />
+					{
+						this.props.authedUser ?
+							(
+								<>
+									<Route path="/" exact component={Dashboard} />
+									<Route path="/add" exact component={NewQuestion} />
+									<Route path="/questions/:id" exact component={QuestionPage} />
+									<Route path="/leaderboard" exact component={Leaderboard} />
+								</>
+							) : (
+								<Route path="/" component={UserList} />
+							)
+					}
+				</div>
 			</Router>
 		);
 	}

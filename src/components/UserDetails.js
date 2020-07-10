@@ -10,6 +10,9 @@ export default function UserDetails({ user }) {
                 alt={`Avatart of ${user.name}`}
                 className="avatar" />
             <div>{user.name}</div>
+            <p>Answered Questions: {Object.keys(user.answers).length}</p>
+            <p>Created Questions: {user.questions.length}</p>
+            <p>Score: {Object.keys(user.answers).length + user.questions.length}</p>
         </div>
     );
 };

@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { handleAddQuestion } from '../actions/questions';
+import { withRouter } from 'react-router-dom';
 
 class NewQuestion extends React.Component {
 
@@ -31,11 +32,12 @@ class NewQuestion extends React.Component {
             q1: '',
             q2: ''
         }));
+        this.props.history.push('/');
     }
 
     render() {
         return (
-            <div>
+            <div className="main-component">
                 <h3>Create New Question</h3>
                 <h5>Would you rather...</h5>
                 <form onSubmit={this.handleOnSubmit}>
@@ -49,4 +51,4 @@ class NewQuestion extends React.Component {
     }
 }
 
-export default connect()(NewQuestion);
+export default withRouter(connect()(NewQuestion));

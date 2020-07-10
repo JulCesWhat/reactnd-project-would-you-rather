@@ -7,7 +7,7 @@ class UserList extends React.Component {
     render() {
         const { userIds } = this.props;
         return (
-            <div>
+            <div className="main-component">
                 <ul>
                     {
                         userIds.map((userId) => (

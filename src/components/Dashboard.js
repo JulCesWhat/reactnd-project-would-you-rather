@@ -21,10 +21,10 @@ class Dashboard extends Component {
         const { ansQuestionIds, unAnsQuestionIds } = this.props;
         const { filterType } = this.state;
         return (
-            <div>
-                <div>
-                    <span onClick={this.handleOnToggle}>Unanswered</span>
-                    <span onClick={this.handleOnToggle}>Answered</span>
+            <div className="main-component" >
+                <div className="dashboard-title">
+                    <span className={`${this.state.filterType === UNANSWERED ? "active" : ""}`}  onClick={this.handleOnToggle}>Unanswered</span>
+                    <span className={`${this.state.filterType === ANSWERED ? "active" : ""}`} onClick={this.handleOnToggle}>Answered</span>
                 </div>
                 <div>
                     <ul>

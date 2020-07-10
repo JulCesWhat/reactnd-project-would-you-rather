@@ -6,7 +6,7 @@ class Leaderboard extends React.Component {
     render() {
         const { users } = this.props;
         return (
-            <div>
+            <div className="main-component">
                 <h3>Leaderboard</h3>
                 <ul>
                     {
@@ -25,11 +25,10 @@ class Leaderboard extends React.Component {
 function mapStateToProps({ users }) {
     const sortedUsers = Object.keys(users)
         .sort((a, b) => {
-            let valB = users[b].answers.length + users[b].questions.length;
-            let valA = users[a].answers.length + users[a].questions.length;
+            let valB = Object.keys(users[b].answers).length + users[b].questions.length;
+            let valA = Object.keys(users[a].answers).length + users[a].questions.length;
             return valB - valA;
         }).map((id) => (users[id]))
-    console.log(sortedUsers);
     return {
         users: sortedUsers
     };
